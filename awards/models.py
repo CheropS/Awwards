@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.fields.related import ForeignKey
+
 
 # Create your models here.
 class Project(models.Model):
@@ -9,7 +9,7 @@ class Project(models.Model):
     link=models.URLField(max_length=200)
 
     def __str__(self):
-        return self.title
+        return f'{self.title.username}'
 
 class Profile(models.Model):
     picture=models.ImageField()
