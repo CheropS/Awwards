@@ -1,6 +1,23 @@
 {%extends 'all-awards/base.html'%}
 <div class="container">
-    <div class="card">
-        
-    </div>
+   <div class="row">
+       <div class="col-md-10">
+        { for photo in photos }
+        <div class="card my-2">
+            <img class="image-thumbail"
+                src="{{photo.image.url }}"
+                alt="Card image cap">
+
+            <div class="card-body">
+                <h5 class="card-title">Lady in Bali</h5>
+                <small>Category: {{ photo.category.name }}</small>
+            </div>
+
+            <a href="{% url 'view-pictures' %}" class="btn btn-outline-dark btn-sm m-1">View</a>
+        </div>
+       </div>
+       <div class="col-md-2">
+
+       </div>
+   </div>
 </div>
