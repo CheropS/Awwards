@@ -5,3 +5,8 @@ h1 {
 *{
     font-family: 'Lobster', cursive;
 }
+.image-thumbail{
+    height: 200px;
+    object-fit: contain;
+    width: 300px;
+}
