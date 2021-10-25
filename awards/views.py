@@ -7,7 +7,7 @@ from .forms import ProjectForm
 def home(request):
     projects=Project.objects.all()
     photos=Project.objects.all()
-    context={'projects':projects, 'photos':photos}
+    context={'photos':photos, 'projects':projects}
     return render(request, 'all-awards/home.html', context)
 
 def create_post(request):
@@ -22,3 +22,8 @@ def create_post(request):
     else:
         form = ProjectForm()
     return render(request,'all-awards/new.html',{'form':form})
+
+def viewProject(request):
+    image=Project.objects.filter()
+    context={'image':image}
+    return render(request, 'all-awards/project.html', context)
