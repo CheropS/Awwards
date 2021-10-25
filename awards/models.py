@@ -9,7 +9,7 @@ class Project(models.Model):
     link=models.URLField(max_length=200)
 
     def __str__(self):
-        return f'{self.title.username}'
+        return f'{self.title}'
 
 class Profile(models.Model):
     picture=models.ImageField()
@@ -18,4 +18,4 @@ class Profile(models.Model):
     contact=models.CharField(max_length=10)
 
     def __str__(self):
-        return self.picture
+        return self.bio
