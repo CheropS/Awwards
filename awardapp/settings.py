@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'awards',
     'bootstrap5',
-    'django_bootstrap_icons'
+    'django_bootstrap_icons',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
