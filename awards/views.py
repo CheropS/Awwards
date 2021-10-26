@@ -27,3 +27,16 @@ def viewProject(request):
     image=Project.objects.filter()
     context={'image':image}
     return render(request, 'all-awards/project.html', context)
+
+def search_results(request):
+
+    if 'author' in request.GET and request.GET["author"]:
+        search_term = request.GET.get("author")
+        searched_profiles = Project.search_by_author(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"searched_profiles": searched_profiles})
+
+    else:
+        message = "You haven't searched for any person"
+        return render(request, 'search.html',{"message":message})

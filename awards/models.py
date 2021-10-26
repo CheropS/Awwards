@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 class Project(models.Model):
+    author = models.ForeignKey('auth.user',on_delete=models.CASCADE,related_name='author')
     title=models.CharField(max_length=30)
     image=models.ImageField()
     description=models.TextField()
