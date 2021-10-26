@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'awards',
         # 'USER': 'moringa',
-        # 'PASSWORD': 'Kenyan4Life',
+        # 'PASSWORD': 'kenyan',
     }
 }
 
@@ -140,3 +140,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #configuring the location for media
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
+
+#upon loading
+LOGIN_REDIRECT_URL = '/'
