@@ -10,3 +10,6 @@ h1 {
     object-fit: contain;
     width: 300px;
 }
+.form-control{
+    width: 60px;
+}
