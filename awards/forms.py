@@ -22,3 +22,19 @@ class ProjectForm(forms.ModelForm):
             'link',
 
         ]
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['picture',
+                  'bio',
+                  'projects',
+                  'contact'
+        ]
+
+
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email']
