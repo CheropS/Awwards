@@ -6,6 +6,6 @@ urlpatterns=[
     url('^new/$',views.create_post,name = 'new-projects'),
     url('^project/$',views.viewProject,name = 'view-project'),
     url('^search/', views.search_results, name='search_results'),
-    
+    url('^profile/', views.profile, name='profile'),
    
 ]

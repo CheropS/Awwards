@@ -1,5 +1,7 @@
 from django.db import models
-
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Project(models.Model):
@@ -18,5 +20,18 @@ class Profile(models.Model):
     projects=models.ForeignKey('Project',related_name='links',on_delete=models.CASCADE)
     contact=models.CharField(max_length=10)
 
+    def save_profile(self):
+        self.save()
+
     def __str__(self):
         return self.bio
+    
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
