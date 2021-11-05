@@ -11,10 +11,17 @@ class Project(models.Model):
     description=models.TextField()
     link=models.URLField(max_length=200)
 
+    def create_project(self):
+        self.save()
+
+    def save_project(self):
+        self.save()
+
     def __str__(self):
         return f'{self.title}'
 
 class Profile(models.Model):
+    user=models.OneToOneField('auth.user',on_delete=models.CASCADE)
     picture=models.ImageField()
     bio=models.TextField(max_length=100)
     projects=models.ForeignKey('Project',related_name='links',on_delete=models.CASCADE)
@@ -24,7 +31,7 @@ class Profile(models.Model):
         self.save()
 
     def __str__(self):
-        return self.bio
+        return self.user
     
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
