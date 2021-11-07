@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
@@ -42,3 +43,52 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
+class Rating(models.Model):
+    RATING_CHOICES   = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+        (6, '6'),
+        (7, '7'),
+        (8, '8'),
+        (9, '9'),
+        (10, '10'),
+    )
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='ratings', null=True)
+    design_rating = models.PositiveIntegerField(choices=RATING_CHOICES, default=0)
+    usability_rating = models.PositiveIntegerField(choices=RATING_CHOICES, default=0)
+    content_rating = models.PositiveIntegerField(choices=RATING_CHOICES, default=0)
+    date_posted = models.DateTimeField(auto_now_add=True)
+    comment = models.TextField()
+
+    def __str__(self):
+            return self.author
+    def save_comment(self):
+            self.save()
+
+    def get_comment(self, id):
+            comments = Rating.objects.filter(project_id=id)
+            return comments
+            
+@classmethod
+def get_ratings(cls):
+        ratings = Rating.objects.all()
+        return ratings
+
+# class Ratings(models.Model):
+#     author=models.ForeignKey('auth.user',on_delete=models.CASCADE)
+#     project=models.ForeignKey('Project', on_delete=models.CASCADE)
+#     design_rating=models.PositiveIntegerField()
+#     usability_rating=models.PositiveIntegerField()
+#     content_rating=models.PositiveIntegerField()
+
+#     Rating_choices=(
+
+#     )
+# @classmethod
+# def get_ratings(cls):
+#     ratings=Ratings.objects.all()
+#     return ratings

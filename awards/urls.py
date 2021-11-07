@@ -7,5 +7,6 @@ urlpatterns=[
     url('^project/$',views.viewProject,name = 'view-project'),
     url('^search/', views.search_results, name='search_results'),
     url('^profile/', views.profile, name='profile'),
+    url('^ratings/<int:pk>', views.rateProject, name='ratings'),
    
 ]

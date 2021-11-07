@@ -3,7 +3,7 @@ from django.contrib.auth import models
 from django.contrib.auth.models import User
 from django import forms
 from django.forms import fields, widgets
-from .models import Project, Profile
+from .models import Project, Profile, Rating
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit,Layout,Field
 
@@ -38,3 +38,10 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email']
+
+class RateForm(forms.ModelForm):
+
+    class Meta:
+        model= Rating
+        field=['design', 'usability', 'content']
+        exclude=['project', 'author']
