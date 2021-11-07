@@ -1,14 +1,14 @@
-from django.shortcuts import render, redirect
+from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import get_object_or_404, render, redirect
 from .models import Project, Profile
-from .forms import ProjectForm, ProfileUpdateForm, UserUpdateForm
+from .forms import ProjectForm, ProfileUpdateForm, UserUpdateForm, RateForm
 from django.contrib import messages
 
 
 # Create your views here.
 def home(request):
     projects=Project.objects.all()
-    photos=Project.objects.all()
-    context={'photos':photos, 'projects':projects}
+    context={'projects':projects}
     return render(request, 'all-awards/home.html', context)
 
 def create_post(request):
@@ -28,6 +28,28 @@ def viewProject(request):
     image=Project.objects.filter()
     context={'image':image}
     return render(request, 'all-awards/project.html', context)
+
+def rateProject(request, pk):
+    project=get_object_or_404(Project, pk=pk)
+    current_user=request.user
+    if request.method== 'POST':
+        rateForm=request.RateForm(request.POST)
+        if rateForm.is_valid():
+            design_rating=form.cleaned_data('design_rating')
+            usability_rating=form.cleaned_data('usability_rating')
+            content_rating=form.cleaned_data('content_rating')
+            rating=form.save(commit=False)
+            rating.project=project
+            rating.author=current_user
+            rating.design_rating=design_rating
+            rating.usability_rating=usability_rating
+            rating.content_rating=content_rating
+            rating.save()
+    else:
+        form=RateForm()
+        return render(request, 'ratings.html', {"project":project, "form":form})
+
+
 
 def search_results(request):
 

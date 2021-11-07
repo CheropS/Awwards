@@ -1,0 +1,22 @@
+{%extends 'all-awards/base.html'%}
+{% load static %}
+
+{% block content %}
+{{block.super}}
+<div class="container m-5">
+    {% for project in projects %}
+    <div class="card">
+        <div class="card-title">
+            {{ project.title }}
+        </div>
+        <div class="card-image">
+            <img src="{{ project.image }}" alt="{{ project.title }}"> 
+        </div>
+        <div class="card-body">
+            {% crsf_token %}
+            {{ form|crispy }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock%}
