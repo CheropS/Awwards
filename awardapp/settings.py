@@ -27,7 +27,10 @@ SECRET_KEY = 'django-insecure-%2)dzm5ua7kc^o7a!rd&2*n#2!^11lt+fa0*y3=enpj@t3p#er
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'awards101.herokuapp.com'
+    'awards101.herokuapp.com',
+    '127.0.0.1',
+    '*'
+
 ]
 
 
@@ -43,7 +46,8 @@ INSTALLED_APPS = [
     'awards',
     'bootstrap5',
     'crispy_forms',
-    'django_bootstrap_icons', 
+    'django_bootstrap_icons',
+    'crispy_bootstrap5', 
     
 ]
 
@@ -132,9 +136,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "staticfiles"),
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
@@ -142,6 +145,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 #configuring the location for media
 MEDIA_URL='/media/'

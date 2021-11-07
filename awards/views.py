@@ -1,14 +1,17 @@
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Project, Profile
+from .models import Project, Profile, Rating
 from .forms import ProjectForm, ProfileUpdateForm, UserUpdateForm, RateForm
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
 def home(request):
     projects=Project.objects.all()
     context={'projects':projects}
+    for project in projects:
+        print(project.id)
     return render(request, 'all-awards/home.html', context)
 
 def create_post(request):
@@ -30,13 +33,15 @@ def viewProject(request):
 
 def rateProject(request, pk):
     project=get_object_or_404(Project, pk=pk)
+    project1=Project.objects.get(id=pk)
     current_user=request.user
     if request.method== 'POST':
-        rateForm=request.RateForm(request.POST)
-        if rateForm.is_valid():
-            design_rating=form.cleaned_data('design_rating')
-            usability_rating=form.cleaned_data('usability_rating')
-            content_rating=form.cleaned_data('content_rating')
+        form=RateForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            design_rating=form.cleaned_data.get('design_rating')
+            usability_rating=form.cleaned_data.get('usability_rating')
+            content_rating=form.cleaned_data.get('content_rating')
             rating=form.save(commit=False)
             rating.project=project
             rating.author=current_user
@@ -44,6 +49,7 @@ def rateProject(request, pk):
             rating.usability_rating=usability_rating
             rating.content_rating=content_rating
             rating.save()
+            return HttpResponseRedirect(request.path_info)
     else:
         form=RateForm()
         return render(request, 'ratings.html', {"project":project, "form":form})
