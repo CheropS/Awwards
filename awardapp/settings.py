@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'awards',
     'bootstrap5',
     'crispy_forms',
-    'django_bootstrap_icons',
     'crispy_bootstrap5', 
     
 ]
