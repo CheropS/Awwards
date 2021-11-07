@@ -25,7 +25,6 @@ class Profile(models.Model):
     user=models.OneToOneField('auth.user',on_delete=models.CASCADE)
     picture=models.ImageField(null=True, blank=True)
     bio=models.TextField(max_length=100, null=True, blank=True)
-    projects=models.ForeignKey('Project',related_name='links',on_delete=models.CASCADE,  blank=True)
     contact=models.CharField(max_length=10, null=True, blank=True)
 
     def save_profile(self):

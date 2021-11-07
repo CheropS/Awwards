@@ -27,7 +27,6 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ['picture',
                   'bio',
-                  'projects',
                   'contact'
         ]
 
