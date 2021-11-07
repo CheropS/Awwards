@@ -49,6 +49,7 @@ def rateProject(request, pk):
             rating.usability_rating=usability_rating
             rating.content_rating=content_rating
             rating.save()
+            
             return HttpResponseRedirect(request.path_info)
     else:
         form=RateForm()
