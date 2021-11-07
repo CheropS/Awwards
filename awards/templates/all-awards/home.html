@@ -7,16 +7,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-9">
-
+            <div class="row">
             {% for project in projects %}
-            <div class="col-md">
+            <div class="col-md-4">
                 <div class="card my-2">
                     <img class="image-thumbail" src="{{ project.image.url }}"
-                        height="200px" alt="Card image cap">
+                        alt="Card image cap">
 
                     <div class="card-body">
                         <h5 class="card-title"></h5>
-                        <small>Title: {{ project.project.title }}</small>
+                        <small>Title: {{ project.title }}</small>
                     </div>
 
                     <a href="{% url 'view-project' %}" class="btn btn-outline-dark btn-sm m-1">View Project</a>
@@ -28,7 +28,7 @@
             <h3>No Projects</h3>
             {% endfor %}
         </div>
-
+        </div>
         <div class="col-md-3">
 
         </div>

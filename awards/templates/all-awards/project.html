@@ -9,7 +9,7 @@
             <a href="{% url 'home' %}" class="btn btn-dark my-3">Back to Projects</a>
             <div style="height:70vh">
                 <img style="max-height: 100%; max-width: 100%;"
-                src="https://ae.visamiddleeast.com/dam/VCOM/global/travel-with-visa/images/visa-travel-carousel-02-640x640.jpg">
+                src="{{ project.image.url }}">
                 {{ project.author }}
                 <p>Lady in Bali</p>
                 

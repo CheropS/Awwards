@@ -25,9 +25,8 @@ def create_post(request):
     return render(request,'all-awards/new.html',{'form':form})
 
 def viewProject(request):
-    image=Project.objects.filter()
-    context={'image':image}
-    return render(request, 'all-awards/project.html', context)
+    image=Project.objects.all()
+    return render(request, 'all-awards/project.html',{'image':image})
 
 def rateProject(request, pk):
     project=get_object_or_404(Project, pk=pk)
