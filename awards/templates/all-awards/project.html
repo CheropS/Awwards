@@ -1,4 +1,5 @@
 {%extends 'all-awards/base.html'%}
+{% load static %}
 
 {% block content %}
 {{block.super}}
@@ -7,13 +8,16 @@
     <div class="row justify-content-center">
         <div class="col">
             <a href="{% url 'home' %}" class="btn btn-dark my-3">Back to Projects</a>
+            {% for project in projects %}
             <div style="height:70vh">
                 <img style="max-height: 100%; max-width: 100%;"
                 src="{{ project.image.url }}">
-                {{ project.author }}
-                <p>Lady in Bali</p>
+                <p>{{ project.author }}</p>
+                <p>{{ project.description }}</p>
+                <a href="{{ project.link.url }}"></a>
                 
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>
