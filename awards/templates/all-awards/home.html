@@ -19,7 +19,7 @@
                         <small>Title: {{ project.title }}</small>
                     </div>
 
-                    <a href="{% url 'ratings' %}" class="btn btn-outline-dark btn-sm m-1">View Project</a>
+                    <a href="{% url 'ratings' project.id %}" class="btn btn-outline-dark btn-sm m-1">View Project</a>
 
                 </div>
             </div>
